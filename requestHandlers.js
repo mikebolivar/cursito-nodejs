@@ -3,11 +3,14 @@ var exec = require("child_process").exec;
 function iniciar(response) {
   console.log("Manipulador de petición 'iniciar' fue llamado.");
 
-  exec("ls -lah", function (error, stdout, stderr) {
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.write(stdout);
-    response.end();
-  });
+  exec("find /",
+    { timeout: 10000, maxBuffer: 20000*1024 },
+    function (error, stdout, stderr) {
+      response.writeHead(200, {"Content-Type": "text/html"});
+      response.write(stdout);
+        console.log("Manipulador de petición 'iniciar' RESPONDE.");
+      response.end();
+    });
 }
 
 function subir(response) {

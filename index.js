@@ -1,4 +1,5 @@
 var server = require("./server");
+var router = require("./router");
 
-server.iniciar();
-
+//Nuevamente , estamos pasando una función como parámetros, pero esto ya no es una novedad para nosotros. 
+server.iniciar(router.route);

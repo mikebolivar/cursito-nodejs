@@ -1,11 +1,11 @@
-function route(handle, pathname, response) {
-  console.log("About to route a request for " + pathname);
+function route(handle, pathname, response, postData) {
+  console.log("A punto de rutear una peticion para " + pathname);
   if (typeof handle[pathname] === 'function') {
-    handle[pathname](response);
+    handle[pathname](response, postData);
   } else {
-    console.log("No request handler found for " + pathname);
+    console.log("No se ha encontrado manipulador para " + pathname);
     response.writeHead(404, {"Content-Type": "text/html"});
-    response.write("404 Not found");
+    response.write("404 No encontrado");
     response.end();
   }
 }
